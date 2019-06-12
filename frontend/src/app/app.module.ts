@@ -1,20 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodaysGamesComponent } from './todays-games/todays-games.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { GetDateComponent } from './get-date/get-date.component';
+import { PredictByDateComponent } from './predict-by-date/predict-by-date.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodaysGamesComponent
+    TodaysGamesComponent,
+    GetDateComponent,
+    PredictByDateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

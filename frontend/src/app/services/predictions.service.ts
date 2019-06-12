@@ -18,6 +18,11 @@ export class PredictionsService {
                     .pipe(catchError(this.errorHandler));
   }
 
+  predictByDate(date: string): Observable<IPrediction[]> {
+    return this.http.post<IPrediction[]>('/api/predict-by-date', date)
+                    .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message || "Server Error");
   }

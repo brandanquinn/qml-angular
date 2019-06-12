@@ -22,6 +22,30 @@ const mock_pred = {
             t2: 'PHI',
             predictedOutcome: 'L',
             predictedPointdiff: '-2'
+        },
+        {
+            t1: 'TOR',
+            t2: 'GSW',
+            predictedOutcome: 'W',
+            predictedPointdiff: '5'
+        },
+        {
+            t1: 'TOR',
+            t2: 'GSW',
+            predictedOutcome: 'W',
+            predictedPointdiff: '5'
+        },
+        {
+            t1: 'TOR',
+            t2: 'GSW',
+            predictedOutcome: 'W',
+            predictedPointdiff: '5'
+        },
+        {
+            t1: 'TOR',
+            t2: 'GSW',
+            predictedOutcome: 'W',
+            predictedPointdiff: '5'
         }
     ]
 };
@@ -88,10 +112,11 @@ app.post('/api/predict-by-date', (req, res) => {
         body += chunk.toString(); // convert Buffer to string
     });
     req.on('end', () => {
-        console.log(body);
         // res.end('ok');
 
-        let date = get(JSON.parse(body), 'date');
+        // console.log(body);
+        let date = body;
+        console.log('POST request received with date: ', date);
 
         // console.log('DATE IS: ', date);
         // request

@@ -45,7 +45,7 @@ exports.convert_prediction = (game_pred) => {
         prediction_message = get(game_pred, 't2') + ' will win by: ' + (-1 * Math.round(get(game_pred, 'predictedPointdiff'))) + 'pts';
     }
 
-    console.log("point diff: ", get(game_pred, 'actual-point-diff'));
+    // console.log("point diff: ", get(game_pred, 'actual-point-diff'));
     if (get(game_pred, 'actual-point-diff')) {
         if (get(game_pred, 'actual-point-diff') > 0) {
             actual_result = get(game_pred, 't1') + ' won by: ' + (get(game_pred, 'actual-point-diff')) + 'pts';   
