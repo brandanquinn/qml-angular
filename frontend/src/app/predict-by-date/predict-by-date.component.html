@@ -1,11 +1,4 @@
 <h3>Games at date: {{date}}</h3>
 <h3>{{errorMessage}}</h3>
 
-<div class="grid grid-pad">
-    <div *ngFor="let prediction of predictions">
-      <div class="module hero" style="margin: 10px">
-        <p>{{prediction.playing}}</p>
-        <h4>{{prediction.prediction_message}}</h4>
-      </div>
-    </div>
-  </div>
+<app-prediction-list [predictions]="predictions"></app-prediction-list>

@@ -8,13 +8,15 @@ import { TodaysGamesComponent } from './todays-games/todays-games.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { GetDateComponent } from './get-date/get-date.component';
 import { PredictByDateComponent } from './predict-by-date/predict-by-date.component';
+import { PredictionListComponent } from './prediction-list/prediction-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodaysGamesComponent,
     GetDateComponent,
-    PredictByDateComponent
+    PredictByDateComponent,
+    PredictionListComponent
   ],
   imports: [
     BrowserModule,
