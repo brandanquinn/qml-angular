@@ -9,6 +9,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { GetDateComponent } from './get-date/get-date.component';
 import { PredictByDateComponent } from './predict-by-date/predict-by-date.component';
 import { PredictionListComponent } from './prediction-list/prediction-list.component';
+import { TeamSelectComponent } from './team-select/team-select.component';
+import { MatchupPredictionComponent } from './matchup-prediction/matchup-prediction.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { PredictionListComponent } from './prediction-list/prediction-list.compo
     TodaysGamesComponent,
     GetDateComponent,
     PredictByDateComponent,
-    PredictionListComponent
+    PredictionListComponent,
+    TeamSelectComponent,
+    MatchupPredictionComponent
   ],
   imports: [
     BrowserModule,

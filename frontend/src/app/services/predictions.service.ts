@@ -23,6 +23,11 @@ export class PredictionsService {
                     .pipe(catchError(this.errorHandler));
   }
 
+  matchupPrediction(t1: string, t2: string) {
+    return this.http.post<IPrediction[]>('/api/matchup-predict', {t1, t2})
+                    .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message || "Server Error");
   }

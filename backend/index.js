@@ -167,6 +167,9 @@ app.post('/api/matchup-predict', (req, res) => {
         let t1 = get(JSON.parse(body), 't1');
         let t2 = get(JSON.parse(body), 't2');
 
+        console.log("POST request received for matchup prediction");
+        console.log("t1: ", t1, "t2: ", t2);
+
         // request
         // .post('http://127.0.0.1:5000/matchup', { json: { t1, t2 }})
         // .on('data', (chunk) => {
