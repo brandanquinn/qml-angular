@@ -1,5 +1,7 @@
 <div class="container" style="text-align: center; margin-top: 50px; padding: 10px;">
   <img src="{{'../../assets/' + winningTeam + '.png'}}" style="width: 100px; height: 100px;">
   <p>{{teams}}</p>
-  <p>{{message}}</p>
+  <p>{{"We've " + correct + " predicted that " + message}}</p>
+  <p *ngIf="result != 'undefined'">{{result ? 'This game was played already and ' + result : 'This game has not been played yet.'}}</p>
+  <p></p>
 </div>
