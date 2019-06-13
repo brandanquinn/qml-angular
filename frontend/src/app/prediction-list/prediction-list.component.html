@@ -1,6 +1,6 @@
 <div class="grid grid-pad">
   <div *ngFor="let prediction of predictions">
-    <div class="module hero" style="margin: 10px">
+    <div class="module hero" style="margin: 10px" (click)="onClick(prediction)">
       <p>{{prediction.playing}}</p>
       <h4>{{prediction.prediction_message}}</h4>
     </div>

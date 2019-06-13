@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodaysGamesComponent } from './todays-games/todays-games.component';
@@ -11,6 +12,7 @@ import { PredictByDateComponent } from './predict-by-date/predict-by-date.compon
 import { PredictionListComponent } from './prediction-list/prediction-list.component';
 import { TeamSelectComponent } from './team-select/team-select.component';
 import { MatchupPredictionComponent } from './matchup-prediction/matchup-prediction.component';
+import { GameDetailsComponent } from './game-details/game-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { MatchupPredictionComponent } from './matchup-prediction/matchup-predict
     PredictByDateComponent,
     PredictionListComponent,
     TeamSelectComponent,
-    MatchupPredictionComponent
+    MatchupPredictionComponent,
+    GameDetailsComponent
   ],
   imports: [
     BrowserModule,

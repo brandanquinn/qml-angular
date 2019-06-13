@@ -24,6 +24,10 @@
   }
   .grid {
     margin: 0;
+    display: flex;
+    /* max-width: 1200px; */
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
   .col-1-4 {
     width: 25%;
@@ -33,7 +37,9 @@
     text-align: center;
     color: #eee;
     max-height: 120px;
-    min-width: 120px;
+    flex: 0 0 32%;
+    min-width: 300px;
+    /* min-width: 6rem; */
     background-color: #3f525c;
     border-radius: 2px;
   }

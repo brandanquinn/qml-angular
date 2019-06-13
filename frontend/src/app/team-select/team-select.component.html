@@ -1,4 +1,4 @@
-<select [(ngModel)]="selectedOption">
+<select [(ngModel)]="selectedOption" (change)="onSelect()">
     <option value="1610612737">Atlanta Hawks</option>
     <option value="1610612738">Boston Celtics</option>
     <option value="1610612751">Brooklyn Nets</option>
@@ -30,6 +30,6 @@
     <option value="1610612762">Utah Jazz</option>
     <option value="1610612764">Washington Wizards</option>
 </select>
-<button *ngIf="selectedOption" (click)="onSelect()">Submit Team</button>
+<!-- <button *ngIf="selectedOption" (click)="onSelect()">Submit Team</button> -->
 
 <!-- <p *ngIf="selectedOption">{{selectedOption}}</p> -->
