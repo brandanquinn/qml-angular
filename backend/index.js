@@ -68,17 +68,17 @@ const mock_pred = {
  *  5:47pm 2/6/19
  */
 app.get('/api/todays-games', (req, res) => {
-    // request
-    // .get('http://127.0.0.1:5000/predict')
-    // .on('data', (chunk) => {
-    //     const predictions_json = chunk.toString()
-    //     // Need to pre-process json
-    //     const converted_predictions = get(JSON.parse(predictions_json), 'predictions').map(pred => convert_prediction(pred));
-    //     res.send(converted_predictions);
-    // })
+    request
+    .get('http://127.0.0.1:5000/predict')
+    .on('data', (chunk) => {
+        const predictions_json = chunk.toString()
+        // Need to pre-process json
+        const converted_predictions = get(JSON.parse(predictions_json), 'predictions').map(pred => convert_prediction(pred));
+        res.send(converted_predictions);
+    })
     // console.log(mock_pred);
-    const converted_predictions = get(mock_pred, 'predictions').map(pred => convert_prediction(pred));
-    res.send(converted_predictions);
+    // const converted_predictions = get(mock_pred, 'predictions').map(pred => convert_prediction(pred));
+    // res.send(converted_predictions);
 
     
 });
@@ -118,19 +118,19 @@ app.post('/api/predict-by-date', (req, res) => {
         let date = body;
         console.log('POST request received with date: ', date);
 
-        // console.log('DATE IS: ', date);
-        // request
-        // .post('http://127.0.0.1:5000/predict', { json: { date }})
-        // .on('data', (chunk) => {
-        //     console.log(chunk.toString());
-        //     const predictions_json = chunk.toString();
-        //     const converted_predictions = get(JSON.parse(predictions_json), 'predictions').map(pred => convert_prediction(pred));
-        //     console.log(converted_predictions);
-        //     res.send(converted_predictions);
-        // })
+        console.log('DATE IS: ', date);
+        request
+        .post('http://127.0.0.1:5000/predict', { json: { date }})
+        .on('data', (chunk) => {
+            console.log(chunk.toString());
+            const predictions_json = chunk.toString();
+            const converted_predictions = get(JSON.parse(predictions_json), 'predictions').map(pred => convert_prediction(pred));
+            console.log(converted_predictions);
+            res.send(converted_predictions);
+        })
 
-        const converted_predictions = get(mock_pred, 'predictions').map(pred => convert_prediction(pred));
-        res.send(converted_predictions);
+        // const converted_predictions = get(mock_pred, 'predictions').map(pred => convert_prediction(pred));
+        // res.send(converted_predictions);
     })
     
     
@@ -170,16 +170,16 @@ app.post('/api/matchup-predict', (req, res) => {
         console.log("POST request received for matchup prediction");
         console.log("t1: ", t1, "t2: ", t2);
 
-        // request
-        // .post('http://127.0.0.1:5000/matchup', { json: { t1, t2 }})
-        // .on('data', (chunk) => {
-        //     const predictions_json = chunk.toString();
-        //     const converted_predictions = get(JSON.parse(predictions_json), 'predictions').map(pred => convert_prediction(pred));
-        //     console.log(converted_predictions);
-        //     res.send(converted_predictions);
-        // })
-        const converted_predictions = get(mock_pred, 'predictions').map(pred => convert_prediction(pred));
-        res.send(converted_predictions);
+        request
+        .post('http://127.0.0.1:5000/matchup', { json: { t1, t2 }})
+        .on('data', (chunk) => {
+            const predictions_json = chunk.toString();
+            const converted_predictions = get(JSON.parse(predictions_json), 'predictions').map(pred => convert_prediction(pred));
+            console.log(converted_predictions);
+            res.send(converted_predictions);
+        })
+        // const converted_predictions = get(mock_pred, 'predictions').map(pred => convert_prediction(pred));
+        // res.send(converted_predictions);
     });
 })
 
