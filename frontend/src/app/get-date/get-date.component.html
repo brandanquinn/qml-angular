@@ -1,5 +1,5 @@
-<div>
-    Enter date to get predictions for: 
+<div style="text-align: center;">
+    <h3>Enter date to get predictions for:</h3> 
     <form>
       <input name="date" [(ngModel)]="date" type="date">
       <button  *ngIf="date" (click)="onSubmit()">{{'Submit for ' + date}}</button>

@@ -19,7 +19,6 @@ export class TeamSelectComponent implements OnInit {
   }
 
   onSelect() {
-    console.log('child event firing');
     this.childEvent.emit(this.selectedOption);
   }
 

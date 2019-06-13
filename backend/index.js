@@ -24,28 +24,28 @@ const mock_pred = {
             predictedPointdiff: '-2'
         },
         {
-            t1: 'TOR',
-            t2: 'GSW',
+            t1: 'DAL',
+            t2: 'CLE',
             predictedOutcome: 'W',
-            predictedPointdiff: '5'
+            predictedPointdiff: '3'
         },
         {
-            t1: 'TOR',
+            t1: 'LAC',
             t2: 'GSW',
-            predictedOutcome: 'W',
-            predictedPointdiff: '5'
+            predictedOutcome: 'L',
+            predictedPointdiff: '-10'
         },
         {
-            t1: 'TOR',
-            t2: 'GSW',
-            predictedOutcome: 'W',
-            predictedPointdiff: '5'
+            t1: 'MIA',
+            t2: 'NOP',
+            predictedOutcome: 'L',
+            predictedPointdiff: '-2'
         },
         {
-            t1: 'TOR',
-            t2: 'GSW',
+            t1: 'OKC',
+            t2: 'NYK',
             predictedOutcome: 'W',
-            predictedPointdiff: '5'
+            predictedPointdiff: '11'
         }
     ]
 };

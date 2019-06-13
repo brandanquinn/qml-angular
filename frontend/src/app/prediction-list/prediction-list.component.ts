@@ -17,7 +17,6 @@ export class PredictionListComponent implements OnInit {
   }
 
   onClick(selectedGame: IPrediction) {
-    console.log(selectedGame.prediction_message);
     this.router.navigate(['/', 'game-details', {teams: selectedGame.playing, message: selectedGame.prediction_message}]);
   }
 

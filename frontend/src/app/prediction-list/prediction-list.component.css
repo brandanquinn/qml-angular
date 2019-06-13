@@ -7,6 +7,7 @@
   [class*='col-']:last-of-type {
     padding-right: 0;
   }
+
   a {
     text-decoration: none;
   }
@@ -35,16 +36,16 @@
   .module {
     padding: 20px;
     text-align: center;
-    color: #eee;
+    color: #3E50B4;
     max-height: 120px;
     flex: 0 0 32%;
     min-width: 300px;
     /* min-width: 6rem; */
-    background-color: #3f525c;
+    background-color: #303030;
     border-radius: 2px;
   }
   .module:hover {
-    background-color: #eee;
+    background-color: #424242;
     cursor: pointer;
     color: #607d8b;
   }
