@@ -5,7 +5,9 @@
 vs.
 <app-team-select (childEvent)="t2_id=$event"></app-team-select>
 <br />
-<button *ngIf="t1_id && t2_id && (t1_id !== t2_id)" (click)="getPrediction()">Get Prediction</button>
+<div style="text-align: center;">
+    <button *ngIf="t1_id && t2_id && (t1_id !== t2_id)" (click)="getPrediction()" style="display: inline-block;">Get Prediction</button>
+</div>
 <p *ngIf="t1_id && t2_id && (t1_id === t2_id)">Must select two different teams for prediction.</p>
 
 <app-prediction-list *ngIf="predictions" [predictions]="predictions"></app-prediction-list>
