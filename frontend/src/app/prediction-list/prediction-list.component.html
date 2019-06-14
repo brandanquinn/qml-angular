@@ -1,4 +1,5 @@
 <div class="container grid grid-pad">
+  <p *ngIf="predictions.length === 0 && !loading">No games at date.</p>
   <div *ngFor="let prediction of predictions">
     <div [ngClass]="{'correct': prediction.is_outcome_correct, 'incorrect': prediction.is_outcome_correct === false}" class="module hero" style="margin: 10px" (click)="onClick(prediction)">
       <p>{{prediction.playing}}</p>

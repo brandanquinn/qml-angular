@@ -1,4 +1,6 @@
 <h2>Todays Games</h2>
 <h3>{{errorMessage}}</h3>
 
+<p *ngIf="loading">Loading Games...</p>
+
 <app-prediction-list [predictions]="predictions"></app-prediction-list>

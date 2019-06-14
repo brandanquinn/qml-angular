@@ -1,7 +1,8 @@
-<div class="container" style="text-align: center; margin-top: 50px; padding: 10px;">
-  <img src="{{'../../assets/' + winningTeam + '.png'}}" style="width: 100px; height: 100px;">
-  <p>{{teams}}</p>
-  <p>{{"We've " + correct + " predicted that " + message}}</p>
-  <p *ngIf="result != 'undefined'">{{result ? 'This game was played already and ' + result : 'This game has not been played yet.'}}</p>
-  <p></p>
+<div class="container" style="margin-top: 50px; padding: 25px; text-align: center;">
+  <div style="display: inline-block; background-color: #303030; border-radius: 25px; border: 2px solid #FF3F80; max-width: 300px; padding: 10px;">
+    <img src="{{'../../assets/' + winningTeam + '.png'}}" style="width: 100px; height: 100px;">
+    <p>{{teams}}</p>
+    <p>{{"We've " + correct + " predicted that " + message}}</p>
+    <p *ngIf="result != 'undefined'">{{result ? 'This game was played already and ' + result : 'This game has not been played yet.'}}</p>
+  </div>
 </div>

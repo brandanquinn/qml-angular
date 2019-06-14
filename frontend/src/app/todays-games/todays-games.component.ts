@@ -11,13 +11,17 @@ export class TodaysGamesComponent implements OnInit {
 
   predictions: IPrediction[] = [];
   errorMessage: string;
+  loading: boolean = true;
 
   constructor(private predictionService: PredictionsService) { }
 
   ngOnInit() {
     this.predictionService.getTodaysGames()
       .subscribe(data => this.predictions = data,
-                error => this.errorMessage = error);
+                error => this.errorMessage = error
+                );
+    
+    this.loading = false;
   }
 
 }

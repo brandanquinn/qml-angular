@@ -10,10 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PredictionListComponent implements OnInit {
 
   @Input() predictions: IPrediction[] = [];
+  loading: boolean = true;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.loading = false;
   }
 
   onClick(selectedGame: IPrediction) {
