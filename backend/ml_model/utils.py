@@ -465,12 +465,16 @@ def predict_matchup(home_team_id, away_team_id):
         - Brandan Quinn
         5/1/19 4:41pm
     """
-    season_stats = requests.get('http://data.nba.net/prod/v1/2019/team_stats_rankings.json')
-    team_stats_list = season_stats.json().get('league').get('standard').get('regularSeason').get('teams')
+    # season_stats = requests.get('http://data.nba.net/prod/v1/2019/team_stats_rankings.json')
+    # team_stats_list = season_stats.json().get('league').get('standard').get('regularSeason').get('teams')
     # print("TEAM STATS LIST", team_stats_list)
-    home_team_stats = find_team_stats(home_team_id, team_stats_list)
+    # home_team_stats = find_team_stats(home_team_id, team_stats_list)
     # print("HOME TEAM STATS", home_team_stats)
-    away_team_stats = find_team_stats(away_team_id, team_stats_list)
+    # away_team_stats = find_team_stats(away_team_id, team_stats_list)
+    home_team_roster = get_team_roster(home_team_id)
+    away_team_roster = get_team_roster(away_team_id)
+    home_team_stats = estimate_team_stats(home_team_roster)
+    away_team_stats = estimate_team_stats(away_team_roster)
 
     home_team = get_team_name(home_team_id)
     away_team = get_team_name(away_team_id)
