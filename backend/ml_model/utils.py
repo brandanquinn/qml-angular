@@ -288,10 +288,19 @@ def get_stats(game_obj, date_string, game_id, home_team, away_team, input):
         # get team season averages
         home_team_id = game_obj.get('hTeam').get('teamId')
         away_team_id = game_obj.get('vTeam').get('teamId')
-        season_stats = requests.get('http://data.nba.net/prod/v1/2019/team_stats_rankings.json')
-        team_stats_list = season_stats.json().get('league').get('standard').get('regularSeason').get('teams')
-        home_team_stats = find_team_stats(home_team_id, team_stats_list)
-        away_team_stats = find_team_stats(away_team_id, team_stats_list)
+        # season_stats = requests.get('http://data.nba.net/prod/v1/2019/team_stats_rankings.json')
+        # team_stats_list = season_stats.json().get('league').get('standard').get('regularSeason').get('teams')
+        # home_team_stats = find_team_stats(home_team_id, team_stats_list)
+        # away_team_stats = find_team_stats(away_team_id, team_stats_list)
+        # Get team roster
+        # For each player on roster:
+            # Get career stats
+        # Sum stats for each team to get their predicted stats.
+        home_team_roster = get_team_roster(home_team_id)
+        away_team_roster = get_team_roster(away_team_id)
+        home_team_stats = estimate_team_stats(home_team_roster)
+        away_team_stats = estimate_team_stats(away_team_roster)
+
         save_data(home_team, home_team_stats, away_team, away_team_stats, input)
     else:
         # get stats from games played
@@ -301,6 +310,116 @@ def get_stats(game_obj, date_string, game_id, home_team, away_team, input):
         save_data(home_team, home_team_stats.get('totals'), away_team, away_team_stats.get('totals'), input)
     # print(home_team + ': ', box_score.json().get('stats').get('hTeam'))
     # print(away_team + ': ', box_score.json().get('stats').get('vTeam'))
+
+def get_team_roster(team_id):
+    """
+        Gets current roster of team passed in.
+
+        :param team_id: String representing team to retrieve roster from NBA API.
+        :return: Returns list of player ids on roster.
+
+        - Brandan Quinn
+        10/20/19 12:54pm
+    """
+
+    resp = requests.get('http://data.nba.net/prod/v1/2019/teams/' + team_id + '/roster.json').json()
+    team_roster = resp.get('league').get('standard').get('players')
+    return team_roster
+
+def estimate_team_stats(team_roster):
+    """
+        For each player on roster, get relevant career stats and sum them to estimate team stats.
+        If player is a rookie, use their latest stats. If a stat is null, make sure to validate and insert 0.
+
+        :param team_roster: Array of player ids from a team's roster.
+        :return: Returns teams estimated stats for predictions.
+
+        - Brandan Quinn
+        10/20/19 1:02pm
+    """
+
+    total_team_stats = {
+        'ppg': 0,
+        'fgp': 0,
+        'tpp': 0,
+        'orpg': 0,
+        'trpg': 0,
+        'apg': 0,
+        'spg': 0,
+        'bpg': 0,
+        'tpg': 0,
+        'pfpg': 0
+    }
+
+    for player in team_roster:
+        player_id = player.get('personId')
+        player_stats = {}
+        # Check if player is rookie.
+        resp = requests.get('http://data.nba.net/prod/v1/2019/players/' + player_id + '_profile.json').json()
+        if not resp.get('league').get('standard').get('stats').get('regularSeason').get('season'):
+            player_stats = resp.get('league').get('standard').get('stats').get('latest')
+        else:
+            player_stats = resp.get('league').get('standard').get('stats').get('careerSummary')
+            
+        games_played = player_stats.get('gamesPlayed')
+        if games_played:
+            games_played = int(games_played)
+            total_team_stats['ppg'] += float(player_stats.get('ppg'))
+            total_team_stats['fgp'] += float(player_stats.get('fgp'))
+            total_team_stats['tpp'] += float(player_stats.get('tpp'))
+            total_team_stats['orpg'] += float(player_stats.get('offReb')) / games_played
+            total_team_stats['trpg'] += float(player_stats.get('totReb')) / games_played
+            total_team_stats['apg'] += float(player_stats.get('apg'))
+            total_team_stats['spg'] += float(player_stats.get('spg'))
+            total_team_stats['bpg'] += float(player_stats.get('bpg'))
+            total_team_stats['tpg'] += float(player_stats.get('turnovers')) / games_played
+            total_team_stats['pfpg'] += float(player_stats.get('pFouls')) / games_played
+
+
+    print('TEAM ROSTER SIZE:', len(team_roster))
+
+    avg_team_stats = {
+        'ppg': {
+            'avg': total_team_stats.get('ppg')
+        },
+        'fgp': { 
+            'avg': total_team_stats.get('fgp') / len(team_roster)
+        },
+        'tpp': { 
+            'avg': total_team_stats.get('tpp') / len(team_roster)
+        },
+        'orpg': { 
+            'avg': total_team_stats.get('orpg')
+        },
+        'trpg': {
+            'avg': total_team_stats.get('trpg')
+        },
+        'apg': { 
+            'avg': total_team_stats.get('apg')
+        },
+        'spg': {
+            'avg': total_team_stats.get('spg')
+        },
+        'bpg': { 
+            'avg': total_team_stats.get('bpg')
+        },
+        'tpg': { 
+            'avg': total_team_stats.get('tpg')
+        },
+        'pfpg': {
+            'avg': total_team_stats.get('pfpg')
+        }
+    }
+
+    print(avg_team_stats)
+
+    return avg_team_stats
+
+
+
+
+
+
 
 def predict(date):
     """
