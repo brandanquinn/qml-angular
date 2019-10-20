@@ -351,16 +351,9 @@ def estimate_team_stats(team_roster):
         'pfpg': 0
     }
 
-    for player in team_roster:
-        player_id = player.get('personId')
-        player_stats = {}
-        # Check if player is rookie.
-        resp = requests.get('http://data.nba.net/prod/v1/2019/players/' + player_id + '_profile.json').json()
-        if not resp.get('league').get('standard').get('stats').get('regularSeason').get('season'):
-            player_stats = resp.get('league').get('standard').get('stats').get('latest')
-        else:
-            player_stats = resp.get('league').get('standard').get('stats').get('careerSummary')
-            
+    team_roster = get_realistic_roster(team_roster)
+
+    for player_stats in team_roster:
         games_played = player_stats.get('gamesPlayed')
         if games_played:
             games_played = int(games_played)
@@ -416,6 +409,31 @@ def estimate_team_stats(team_roster):
     return avg_team_stats
 
 
+def get_realistic_roster(full_roster):
+    """
+        Takes in a full NBA roster and returns the top 12 players by playing time.
+
+        :param full_roster: List containing full NBA team active roster
+        :return: Returns list containing top 12 players by playing time.
+
+        - Brandan Quinn
+        10/10/19 6:55pm
+    """
+    
+    realistic_roster = []
+
+    for player in full_roster:
+        player_id = player.get('personId')
+        player_stats = {}
+        resp = requests.get('http://data.nba.net/prod/v1/2019/players/' + player_id + '_profile.json').json()
+        player_stats = resp.get('league').get('standard').get('stats').get('latest')
+        realistic_roster.append(player_stats)
+
+    realistic_roster = sorted(realistic_roster, key = lambda i: float(i['mpg']), reverse=True)
+    
+    return realistic_roster[:15]
+
+        
 
 
 
